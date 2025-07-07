@@ -114,79 +114,37 @@ export const details = [
     title: `${c2Name}护盾量`,
     dmg: ({ attr, calc, talent }, { shield }) => shield(0.02 * calc(attr.def) + 27)
   }
-,
-{  
-  title: '触发特效后生命值',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.hp) * 1) })  
-}, {  
-  title: '触发特效后攻击力',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.atk) * 1) })  
-}, {  
-  title: '触发特效后防御力',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.def) * 1) })  
-}, {  
-  title: '触发特效后速度',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.speed) * 1) })  
-}, {  
-  title: '触发特效后暴击率',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cpct) * 1) })  
-}, {  
-  title: '触发特效后暴击伤害',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cdmg) * 1) })  
-}, {  
-  title: '触发特效后击破特攻',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.stance) * 1) })  
-}, {  
-  title: '触发特效后效果命中',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effPct) * 1) })  
-}, {  
-  title: '触发特效后效果抵抗',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effDef) * 1) })  
-}, {  
-  title: '触发特效后充能效率',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.recharge) * 1) })  
-}, {  
-  title: '触发特效后治疗加成',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.heal) * 1) })  
-}, {  
-  title: '当前遗器套装',  
-  dmg: ({ artis }) => ({ avg: artis, type: 'text' })  
-}
 ]
 
 export const mainAttr = 'atk,cpct,cdmg,speed'
 export const defDmgKey = `${ranking}`
 
-export const buffs = [[
-characterBuffSr,enemyBuffSr,
+export const buffs = [characterBuffSr,enemyBuffSr,
   {
     title: '开拓者行迹：[强援弱] 施放战技后，我方全体受到的伤害降低[_reduction]%',
     tree: 1,
     data: {
       _reduction: 15
     }
-  },
-{
+  }, {
     title: '开拓者行迹：[行胜思] 回合开始时，若开拓者持有护盾保护，则攻击力提高[atkPct]%并恢复[_energyevery]点能量',
     tree: 3,
     data: {
       atkPct: 15,
       _energyevery: 5
     }
-  },
-{
+  }, {
     title: '开拓者1魂：[大地芯髓的鸣动] 施放普攻时，额外造成[aPlus]的火属性伤害',
     cons: 1,
     data: {
       aPlus: ({ attr, calc, params }) => calc(attr.def) * (params.aDmg == true ? 50 : 25) / 100
     }
-  },
-{
+  }, {
     title: '开拓者6魂：[永屹城垣的壁垒] 施放强化普攻或终结技后，开拓者的防御力提高[defPct]%',
     cons: 6,
     data: {
       defPct: 10 * 3
     }
-  }
-]
+  },
+  { title: `3.23最后修改：[3.23重置] 显示模式:${NamePath} 排行设置:${rankingOnePath},${rankingTwoPath},${rankingThreePath} 专属排行设置:${sr8004ranking} 更新日志:${renew} 其他信息:${information}` }
 ]

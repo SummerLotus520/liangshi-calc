@@ -143,102 +143,56 @@ export const details = [
       return q4Dmg
     }
   }
-,
-{  
-  title: '触发特效后生命值',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.hp) * 1) })  
-}, {  
-  title: '触发特效后攻击力',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.atk) * 1) })  
-}, {  
-  title: '触发特效后防御力',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.def) * 1) })  
-}, {  
-  title: '触发特效后速度',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.speed) * 1) })  
-}, {  
-  title: '触发特效后暴击率',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cpct) * 1) })  
-}, {  
-  title: '触发特效后暴击伤害',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cdmg) * 1) })  
-}, {  
-  title: '触发特效后击破特攻',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.stance) * 1) })  
-}, {  
-  title: '触发特效后效果命中',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effPct) * 1) })  
-}, {  
-  title: '触发特效后效果抵抗',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effDef) * 1) })  
-}, {  
-  title: '触发特效后充能效率',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.recharge) * 1) })  
-}, {  
-  title: '触发特效后治疗加成',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.heal) * 1) })  
-}, {  
-  title: '当前遗器套装',  
-  dmg: ({ artis }) => ({ avg: artis, type: 'text' })  
-}
 ]
 
 export const defDmgKey = `${ranking}`
 export const mainAttr = 'atk,cpct,cdmg,speed'
 export const defParams = { technique: `${Technique}` }
 
-export const buffs = [[
-characterBuffSr,enemyBuffSr,
+export const buffs = [characterBuffSr,enemyBuffSr,
   {
     check: ({ params }) => params.technique >= 1,
     title: '黄泉秘技：[四相断我] 每个波次开始时对敌方全体造成雷属性伤害。'
-  },
-{
+  }, {
     check: ({ params }) => params.q === true,
     title: '黄泉天赋：[红叶时雨，万倾一空] 终结技期间可无视弱点属性削减敌方韧性，并使敌方全体全属性抗性降低[kx]%',
     data: {
       kx: ({ talent }) => talent.t['抗性降低']
     }
-  },
-{
+  }, {
     title: '黄泉行迹：[奈落] 我方队伍中存在[buffCount]名「虚无」命途角色，使普攻、战技、终结技造成的伤害为原伤害的1[_dmg]%',
     tree: 2,
     data: {
       buffCount: ({ cons }) => cons >= 2 ? 2 : 1,
       _dmg: ({ cons }) => Math.max(0, (cons >= 2 ? 2 : 1) * 45 - 30)
     }
-  },
-{
+  }, {
     title: '黄泉行迹：[雷心] 终结技的【啼泽雨斩】击中持有【集真赤】的敌方目标时，使黄泉造成的伤害提高[dmg]%，并在发动【黄泉返渡】时额外造成6次伤害',
     tree: 3,
     data: {
       dmg: 30 * 3
     }
-  },
-{
+  }, {
     title: '黄泉1魂：[高天寥落真言始] 对处于负面效果的敌方目标造成伤害时暴击率提高[cpct]%',
     cons: 1,
     data: {
       cpct: 18
     }
-  },
-{
+  }, {
     title: '黄泉2魂：[霆鼓俱寂，瑟风亦止] 行迹【奈落】最高数值所需求「虚无」命途角色的数量减少1名',
     cons: 2
-  },
-{
+  }, {
     title: '黄泉4魂：[亘焰燎照镜中人] 在敌方目标进入战斗时，使其陷入终结技伤害易伤状态，受到的终结技伤害提高[qEnemydmg]%',
     cons: 4,
     data: {
       qEnemydmg: 8
     }
-  },
-{
+  }, {
     title: '黄泉6魂：[灾咎解桎梏] 终结技伤害全属性抗性穿透提高[kx]%，施放普攻、战技造成的伤害同时视为终结技伤害。',
     cons: 6,
     data: {
       kx: 20
     }
-  }
-]
+  },
+  { title: `4.6最后修改：[3.26重置] 显示模式:${NamePath} 排行设置:${rankingOnePath},${rankingTwoPath},${rankingThreePath} 专属排行设置:${sr1308ranking} 更新日志:${renew} 其他信息:${information}` }
 ]

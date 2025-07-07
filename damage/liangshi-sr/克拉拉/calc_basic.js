@@ -105,90 +105,46 @@ export const details = [
     params: { Revenge: true },
     dmg: ({ talent }, dmg) => dmg((talent.q['伤害倍率提高'] + talent.t['反击伤害']) * 0.5, 't')
   }
-,
-{  
-  title: '触发特效后生命值',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.hp) * 1) })  
-}, {  
-  title: '触发特效后攻击力',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.atk) * 1) })  
-}, {  
-  title: '触发特效后防御力',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.def) * 1) })  
-}, {  
-  title: '触发特效后速度',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.speed) * 1) })  
-}, {  
-  title: '触发特效后暴击率',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cpct) * 1) })  
-}, {  
-  title: '触发特效后暴击伤害',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cdmg) * 1) })  
-}, {  
-  title: '触发特效后击破特攻',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.stance) * 1) })  
-}, {  
-  title: '触发特效后效果命中',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effPct) * 1) })  
-}, {  
-  title: '触发特效后效果抵抗',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effDef) * 1) })  
-}, {  
-  title: '触发特效后充能效率',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.recharge) * 1) })  
-}, {  
-  title: '触发特效后治疗加成',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.heal) * 1) })  
-}, {  
-  title: '当前遗器套装',  
-  dmg: ({ artis }) => ({ avg: artis, type: 'text' })  
-}
 ]
 
 export const defDmgKey = `${ranking}`
 export const mainAttr = 'atk,cpct,cdmg,speed'
 export const defParams = { technique: `${Technique}` }
 
-export const buffs = [[
-characterBuffSr,enemyBuffSr,
+export const buffs = [characterBuffSr,enemyBuffSr,
   {
     title: '克拉拉天赋：[因为我们是家人] 克拉拉在史瓦罗的保护下受到敌方目标攻击的伤害降低[_reduction]%',
     data: {
       _reduction: 10
     }
-  },
-{
+  }, {
     title: '克拉拉技能：[是约定不是命令] 受到的伤害额外降低[_reduction]%，同时史瓦罗的反击得到强化，对敌方目标造成的伤害倍率提高[_tMulti]%',
     data: {
       _reduction: ({ talent }) => talent.q['伤害降低'] * 100,
       _tMulti: ({ talent }) => talent.q['伤害倍率提高'] * 100
     }
-  },
-{
+  }, {
     check: ({ params }) => params.Revenge === true,
     title: '克拉拉行迹：[****] 史瓦罗的反击造成的伤害提高[tDmg]%',
     tree: 3,
     data: {
       tDmg: 30
     }
-  },
-{
+  }, {
     title: '克拉拉2魂：[紧紧的拥抱] 施放终结技后攻击力提高[atkPct]%',
     cons: 2,
     data: {
       atkPct: 30
     }
-  },
-{
+  }, {
     title: '克拉拉4魂：[家人的温暖] 受到攻击后，受到的伤害降低[_reduction]%',
     cons: 4,
     data: {
       _reduction: 30
     }
-  },
-{
+  }, {
     title: '克拉拉6魂：[长久的陪伴] 我方其它目标遭到攻击时，史瓦罗也有50%的固定概率触发对攻击者的反击，并对攻击目标添加【反击标记】。施放终结技时，额外增加1次强化反击的次数。',
     cons: 6
-  }
-]
+  },
+  { title: `3.21最后修改：[3.21重置] 显示模式:${NamePath} 排行设置:${rankingOnePath},${rankingTwoPath},${rankingThreePath} 专属排行设置:${sr1107ranking} 更新日志:${renew} 其他信息:${information}` }
 ]

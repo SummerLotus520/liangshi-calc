@@ -111,90 +111,46 @@ export const details = [
       }
     }
   }
-,
-{  
-  title: '触发特效后生命值',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.hp) * 1) })  
-}, {  
-  title: '触发特效后攻击力',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.atk) * 1) })  
-}, {  
-  title: '触发特效后防御力',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.def) * 1) })  
-}, {  
-  title: '触发特效后速度',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.speed) * 1) })  
-}, {  
-  title: '触发特效后暴击率',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cpct) * 1) })  
-}, {  
-  title: '触发特效后暴击伤害',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cdmg) * 1) })  
-}, {  
-  title: '触发特效后击破特攻',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.stance) * 1) })  
-}, {  
-  title: '触发特效后效果命中',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effPct) * 1) })  
-}, {  
-  title: '触发特效后效果抵抗',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effDef) * 1) })  
-}, {  
-  title: '触发特效后充能效率',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.recharge) * 1) })  
-}, {  
-  title: '触发特效后治疗加成',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.heal) * 1) })  
-}, {  
-  title: '当前遗器套装',  
-  dmg: ({ artis }) => ({ avg: artis, type: 'text' })  
-}
 ]
 
 export const mainAttr = 'atk,cpct,cdmg'
 export const defDmgKey = `${ranking}`
 export const defParams = { technique: `${Technique}` }
 
-export const buffs = [[
-characterBuffSr,enemyBuffSr,
+export const buffs = [characterBuffSr,enemyBuffSr,
   {
     check: ({ params }) => params.technique >= 1,
     title: '知更鸟秘技：[酣醉序曲] 领域展开期间进入战斗后，每个波次开始时恢复[_energyevery]点能量。',
     data: {
       _energyevery: 5
     }
-  },
-{
+  }, {
     check: ({ params }) => params.e === true,
     title: '知更鸟技能：[翎之咏叹调] 使我方全体造成的伤害提高[dmg]%',
     data: {
       dmg: ({ talent }) => talent.e['伤害提高'] * 100
     }
-  },
-{
+  }, {
     check: ({ params }) => params.q === true,
     title: '知更鸟技能：[千音迭奏，群星赋格] 【协奏】状态，使我方全体攻击力提高[atkPlus]',
     data: {
       atkPlus: ({ talent, calc, attr }) => calc(attr.atk) * talent.q['攻击力提高百分比'] + talent.q['攻击力提高固定值'] * 1,
       tCpct: -2147483647
     }
-  },
-{
+  }, {
     title: '知更鸟天赋：[调性合颂] 使我方全体暴击伤害提高[cdmg]%，且我方目标攻击敌方目标后，知更鸟额外为自身恢复[_energyevery]点能量。',
     data: {
       cdmg: ({ talent }) => talent.t['暴伤提高'] * 100,
       _energyevery: 2
     }
-  },
-{
+  }, {
     check: ({ params }) => params.q === true,
     title: '知更鸟1魂：[微笑的国度] 处于【协奏】状态时，我方全体全属性抗性穿透提高[kx]%',
     cons: 1,
     data: {
       kx: 24
     }
-  },
-{
+  }, {
     check: ({ params }) => params.q === true,
     title: '知更鸟2魂：[两者的午茶] 处于【协奏】状态时，我方全体速度提高[speedPct]%，天赋的能量恢复效果额外提高[_energyevery]点',
     cons: 2,
@@ -202,22 +158,20 @@ characterBuffSr,enemyBuffSr,
       speedPct: 16,
       _energyevery: 1
     }
-  },
-{
+  }, {
     check: ({ params }) => params.q === true,
     title: '知更鸟4魂：[雨滴的钥匙] 施放终结技时，解除我方全体的控制类负面状态，使我方全体在知更鸟处于【协奏】状态期间的效果抵抗提高[effDef]%',
     cons: 4,
     data: {
       effDef: 50
     }
-  },
-{
+  }, {
     check: ({ params }) => params.q === true,
     title: '知更鸟6魂：[月隐的午夜] 处于【协奏】状态时，终结技造成的物理属性附加伤害的暴击伤害额外提高[_cdmg]%。',
     cons: 6,
     data: {
       _cdmg: 450
     }
-  }
-]
+  },
+  { title: `5.14最后修改：[3.26重置] 显示模式:${NamePath} 排行设置:${rankingOnePath},${rankingTwoPath},${rankingThreePath} 专属排行设置:${sr1309ranking} 更新日志:${renew} 其他信息:${information}` }
 ]

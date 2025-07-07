@@ -122,105 +122,58 @@ export const details = [
       }
     }
   }
-,
-{  
-  title: '触发特效后生命值',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.hp) * 1) })  
-}, {  
-  title: '触发特效后攻击力',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.atk) * 1) })  
-}, {  
-  title: '触发特效后防御力',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.def) * 1) })  
-}, {  
-  title: '触发特效后速度',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.speed) * 1) })  
-}, {  
-  title: '触发特效后暴击率',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cpct) * 1) })  
-}, {  
-  title: '触发特效后暴击伤害',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cdmg) * 1) })  
-}, {  
-  title: '触发特效后击破特攻',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.stance) * 1) })  
-}, {  
-  title: '触发特效后效果命中',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effPct) * 1) })  
-}, {  
-  title: '触发特效后效果抵抗',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effDef) * 1) })  
-}, {  
-  title: '触发特效后充能效率',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.recharge) * 1) })  
-}, {  
-  title: '触发特效后治疗加成',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.heal) * 1) })  
-}, {  
-  title: '当前遗器套装',  
-  dmg: ({ artis }) => ({ avg: artis, type: 'text' })  
-}
 ]
 
 export const mainAttr = 'atk,cpct,cdmg'
 export const defDmgKey = `${ranking}`
 export const defParams = { technique: `${Technique}` }
 
-export const buffs = [[
-characterBuffSr,enemyBuffSr,
+export const buffs = [characterBuffSr,enemyBuffSr,
   {
     title: '敌人状态：[韧性] 具有[toughness]韧性',
     data: {
       toughness: ({ params }) => params.toughness == 0 ? 0 : (params.toughness || 0)
     }
-  },
-{
+  }, {
     check: ({ params }) => params.technique >= 1,
     title: '波提欧秘技：[三乘九的微笑] 下一次战斗首次施放战技时，为目标添加与终结技相同的物理弱点'
-  },
-{
+  }, {
     check: ({ params }) => params.e === true,
     title: '波提欧技能：[炽砾舞者的探戈] 处于【****对峙】的敌方目标受到攻击时，受到的伤害提高[enemydmg]%，自身受到伤害提高[_dmg]%',
     data: {
       enemydmg: ({ talent }) => talent.e['敌方受到的伤害提高'] * 100,
       _dmg: 15
     }
-  },
-{
+  }, {
     title: '波提欧行迹：[幽灵装填] 使自身暴击率提高[cpct]%，暴击伤害提高[cdmg]%',
     data: {
       cpct: ({ calc, attr }) => Math.min(30, (calc(attr.stance) * 10 / 100)),
       cdmg: ({ calc, attr }) => Math.min(150, (calc(attr.stance) * 50 / 100))
     }
-  },
-{
+  }, {
     title: '波提欧行迹：[抵近射击] 处于【****对峙】并获得【优势口袋】时，恢复[_energyevery]点能量',
     data: {
       _energyevery: 10
     }
-  },
-{
+  }, {
     title: '波提欧行迹：[蛇之上行] 受到未处于【****对峙】目标的伤害降低[_reduction]%',
     data: {
       _reduction: 30
     }
-  },
-{
+  }, {
     title: '波提欧1魂：[蛇之上行] 战斗开始时，获得1层【优势口袋】。造成伤害时无视敌方目标[ignore]%的防御力。',
     cons: 1,
     data: {
       ignore: 16
     }
-  },
-{
+  }, {
     title: '波提欧2魂：[蛇之上行] 处于【****对峙】并获得【优势口袋】时，恢复[skillPoints]个战技点，并且击破特攻提高[stance]%',
     cons: 2,
     data: {
       skillPoints: 1,
       stance: 30
     }
-  },
-{
+  }, {
     check: ({ params }) => params.e === true,
     title: '波提欧4魂：[冷肉名厨] 对处于【****对峙】的敌方目标造成伤害提升[dmg]%受到伤害降低[_reduction]%',
     cons: 4,
@@ -228,10 +181,9 @@ characterBuffSr,enemyBuffSr,
       dmg: 12,
       _reduction: 12
     }
-  },
-{
+  }, {
     title: '波提欧6魂：[撬棍旅馆的浣熊] 触发天赋造成击破伤害时，对目标额外造成击破伤害',
     cons: 6
-  }
-]
+  },
+  { title: `5.30最后修改：[4.23重置] 显示模式:${NamePath} 排行设置:${rankingOnePath},${rankingTwoPath},${rankingThreePath} 专属排行设置:${sr1315ranking} 更新日志:${renew} 其他信息:${information}` }
 ]

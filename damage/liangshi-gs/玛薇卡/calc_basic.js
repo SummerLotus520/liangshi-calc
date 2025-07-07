@@ -65,42 +65,4 @@ export const details = [
   dmgKey: 'q',
   params: { BurstUse: 1, BurstHit: 1, BurstDmg: 1, FightTime: 2, Fighting_Spirit: 200, EnergyDetermine: 0, IceAttachment: true, team: true, Ororon: true, Chasca: true, Citlali: true, ElementDifferent: 3, ElementSame: 1, ElementWindTeam: 1, ElementMineTeam: 1, ElementIceTeam: 1, ShieldTime: 10, NatlanTeammate: 4, EnergyTeammate: 180,/* 玛薇卡的战意不会被视为元素能量被恶王丸与断浪长鳍计入 */ParticulateNumber: 0,/* 玛薇卡无法获取元素能量，获取能量晶球与微粒时无法触发获得能量晶球或微粒状态，获取战意不会被视为获取元素能量 */NightsoulUse: 332 },
   dmg: ({ talent }, dmg) => dmg(talent.q['技能伤害'], 'q,nightsoul', 'melt')
-},
-{
-  title: '触发特效后生命值',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.hp) * 1) })
-}, {
-  title: '触发特效后攻击力',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.atk) * 1) })
-}, {
-  title: '触发特效后防御力',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.def) * 1) })
-}, {
-  title: '触发特效后速度',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.speed) * 1) })
-}, {
-  title: '触发特效后暴击率',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cpct) * 1) })
-}, {
-  title: '触发特效后暴击伤害',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cdmg) * 1) })
-}, {
-  title: '触发特效后击破特攻',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.stance) * 1) })
-}, {
-  title: '触发特效后效果命中',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effPct) * 1) })
-}, {
-  title: '触发特效后效果抵抗',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effDef) * 1) })
-}, {
-  title: '触发特效后充能效率',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.recharge) * 1) })
-}, {
-  title: '触发特效后治疗加成',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.heal) * 1) })
-}, {
-  title: '当前遗器套装',
-  dmg: ({ artis }) => ({ avg: artis, type: 'text' })
-}
-]]
+}]

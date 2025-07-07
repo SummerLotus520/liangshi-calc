@@ -103,64 +103,27 @@ export const details = [
       dmg: (a1.dmg + a2.dmg * 2) * 24 / 100,
     }
   }
-},
-{  
-  title: '触发特效后生命值',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.hp) * 1) })  
-}, {  
-  title: '触发特效后攻击力',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.atk) * 1) })  
-}, {  
-  title: '触发特效后防御力',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.def) * 1) })  
-}, {  
-  title: '触发特效后速度',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.speed) * 1) })  
-}, {  
-  title: '触发特效后暴击率',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cpct) * 1) })  
-}, {  
-  title: '触发特效后暴击伤害',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cdmg) * 1) })  
-}, {  
-  title: '触发特效后击破特攻',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.stance) * 1) })  
-}, {  
-  title: '触发特效后效果命中',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effPct) * 1) })  
-}, {  
-  title: '触发特效后效果抵抗',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effDef) * 1) })  
-}, {  
-  title: '触发特效后充能效率',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.recharge) * 1) })  
-}, {  
-  title: '触发特效后治疗加成',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.heal) * 1) })  
-}, {  
-  title: '当前遗器套装',  
-  dmg: ({ artis }) => ({ avg: artis, type: 'text' })  
-}
-]
+}]
 
 export const defDmgKey = `${ranking}`
 export const mainAttr = 'hp,cpct,cdmg'
 export const defParams = { technique: `${Technique}` }
 
-export const buffs = [[
-characterBuffSr,enemyBuffSr,
+export const buffs = [characterBuffSr,enemyBuffSr,
 {
   title: '缇宝技能：[礼物都去哪儿了] 拥有【****】时，我方全体目标全属性抗性穿透提高[atkPct]%',
   data: {
     atkPct: ({ talent }) => talent.e['抗性穿透提高'] * 100
   }
 },
+
 {
   title: '缇宝技能：[猜猜这里住着谁] 开启结界，敌方目标受到的伤害提高[enemydmg]%',
   data: {
     enemydmg: ({ talent }) => talent.q['伤害提高'] * 100
   }
 },
+
 {
   title: '缇宝行迹：[岔路旁的小石子？] 战斗开始时，恢复[_energyevery]点能量，我方其他目标攻击击中1个目标恢复[_energyeveryTwo]点能量',
   tree: 3,
@@ -169,6 +132,7 @@ characterBuffSr,enemyBuffSr,
     _energyeveryTwo: 1.5
   }
 },
+
 {
   title: '缇宝行迹：[长翅膀的玻璃球！] 生命上限提高我方全体角色生命上限之和的[hpPct]%', //非组队计算仅计算自己
   tree: 2,
@@ -176,6 +140,7 @@ characterBuffSr,enemyBuffSr,
     hpPct: 9
   }
 },
+
 {
   check: ({ params }) => params.t === true,
   title: '缇宝行迹：[城墙外的羊羔儿…] 施放天赋的追加攻击后，造成的伤害提高[dmg]%',
@@ -206,6 +171,4 @@ characterBuffSr,enemyBuffSr,
     tDmg: 729
  }
 },
-{ title: `2.22最后修改：[2.22重置] 显示模式:${NamePath} 排行设置:${rankingOnePath},${rankingTwoPath},${rankingThreePath} 专属排行设置:${sr1403ranking} 更新日志:${renew} 其他信息:${information}` }
-]
-]
+ { title: `2.22最后修改：[2.22重置] 显示模式:${NamePath} 排行设置:${rankingOnePath},${rankingTwoPath},${rankingThreePath} 专属排行设置:${sr1403ranking} 更新日志:${renew} 其他信息:${information}` }]

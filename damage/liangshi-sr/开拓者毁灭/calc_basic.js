@@ -97,96 +97,51 @@ export const details = [
     params: { Fighting: true },
     dmg: ({ talent }, dmg) => dmg(talent.q2['扩散伤害·相邻目标'], 'q')
   }
-,
-{  
-  title: '触发特效后生命值',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.hp) * 1) })  
-}, {  
-  title: '触发特效后攻击力',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.atk) * 1) })  
-}, {  
-  title: '触发特效后防御力',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.def) * 1) })  
-}, {  
-  title: '触发特效后速度',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.speed) * 1) })  
-}, {  
-  title: '触发特效后暴击率',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cpct) * 1) })  
-}, {  
-  title: '触发特效后暴击伤害',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cdmg) * 1) })  
-}, {  
-  title: '触发特效后击破特攻',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.stance) * 1) })  
-}, {  
-  title: '触发特效后效果命中',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effPct) * 1) })  
-}, {  
-  title: '触发特效后效果抵抗',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effDef) * 1) })  
-}, {  
-  title: '触发特效后充能效率',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.recharge) * 1) })  
-}, {  
-  title: '触发特效后治疗加成',  
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.heal) * 1) })  
-}, {  
-  title: '当前遗器套装',  
-  dmg: ({ artis }) => ({ avg: artis, type: 'text' })  
-}
 ]
 
 export const mainAttr = 'atk,cpct,cdmg,speed'
 export const defDmgKey = `${ranking}`
 
-export const buffs = [[
-characterBuffSr,enemyBuffSr,
+export const buffs = [characterBuffSr,enemyBuffSr,
   {
     title: '开拓者天赋：[牵制盗垒] 击破敌方目标的弱点后，攻击力提高[atkPct]%',
     data: {
       atkPct: ({ talent }) => talent.t['攻击力提升'] * 100 * 2
     }
-  },
-{
+  }, {
     title: '开拓者行迹：[蓄势] 战斗开始时，立刻恢复[_energyevery]点能量',
     tree: 1,
     data: {
       _energyevery: 15
     }
-  },
-{
+  }, {
     title: '开拓者行迹：[坚韧] 击破敌方目标的弱点后，防御力提高[defPct]%',
     tree: 2,
     data: {
       defPct: 10 * 2
     }
-  },
-{
+  }, {
     check: ({ params }) => params.Fighting === true,
     title: '开拓者行迹：[斗志] 施放战技或终结技【全胜•安息全垒打】时，对指定敌方目标造成的伤害提高[dmg]%',
     tree: 3,
     data: {
       dmg: 25
     }
-  },
-{
+  }, {
     title: '开拓者1魂：[坠临万界的星芒] 施放终结技消灭敌方目标时，开拓者额外恢复[_energyevery]点能量',
     cons: 1,
     data: {
       _energyevery: 10
     }
-  },
-{
+  }, {
     title: '开拓者2魂：[因缘假合的人身] 施放攻击后，若击中的敌方目标弱点为物理属性，则回复生命值。',
     cons: 2
-  },
-{
+  }, {
     title: '开拓者4魂：[凝眸毁灭的瞬间] 击中处于弱点击破状态的敌方目标时，暴击率提高[cpct]%',
     cons: 4,
     data: {
       cpct: 25
     }
-  }
-]
+  },
+  { title: `3.23最后修改：[3.23重置] 显示模式:${NamePath} 排行设置:${rankingOnePath},${rankingTwoPath},${rankingThreePath} 专属排行设置:${sr8001ranking} 更新日志:${renew} 其他信息:${information}` }
 ]

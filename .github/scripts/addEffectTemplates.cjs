@@ -1,10 +1,10 @@
-const fs = require('fs'); 
-const path = require('path'); 
+const fs = require('fs');
+const path = require('path');
 
-const rootDirs = [ 
-  'damage/liangshi-gs', 
-  'damage/liangshi-sr' 
-]; 
+const rootDirs = [
+  'damage/liangshi-gs',
+  'damage/liangshi-sr'
+];
 
 const gsTemplate = `{  
   title: '触发特效后生命值',  
@@ -36,7 +36,7 @@ const gsTemplate = `{
 }, {  
   title: '当前圣遗物套装',  
   dmg: ({ artis }) => ({ avg: artis, type: 'text' })  
-}`; 
+}`;
 
 const srTemplate = `{  
   title: '触发特效后生命值',  
@@ -76,65 +76,67 @@ const srTemplate = `{
   dmg: ({ artis }) => ({ avg: artis, type: 'text' })  
 }`;
 
-let patchedChars = []; 
+let patchedChars = [];
 
-function checkAndPatch(filePath, isGs, charName) { 
-  let code = fs.readFileSync(filePath, 'utf8'); 
+function patchDetails(code, isGs, filePath) {
+  if (code.includes('触发特效后生命值')) return null;
 
-  if (code.includes('触发特效后生命值')) { 
-    return false; 
-  } 
-
-  // 用正则匹配 details = [ ，允许空白符
-  const detailsMatch = code.match(/details\s*=\s*\[/);
-  if (!detailsMatch) {
-    console.log(`未找到 details 数组定义，跳过：${filePath}`);
-    return false;
+  const match = code.match(/export\s+const\s+details\s*=\s*\[/);
+  if (!match) {
+    console.log(`未找到 export const details = [，跳过：${filePath}`);
+    return null;
   }
-  const detailsStart = detailsMatch.index + detailsMatch[0].length - 1;
 
-  let bracketCount = 0; 
-  let insertPos = -1; 
-  for (let i = detailsStart; i < code.length; i++) { 
-    if (code[i] === '[') bracketCount++; 
-    else if (code[i] === ']') bracketCount--; 
-    if (bracketCount === 0) { 
-      insertPos = i; 
-      break; 
-    } 
-  } 
+  let startIdx = match.index + match[0].length - 1;
+  let bracketCount = 1;
+  let endIdx = startIdx;
 
-  if (insertPos === -1) return false; 
+  while (bracketCount > 0 && endIdx < code.length) {
+    endIdx++;
+    if (code[endIdx] === '[') bracketCount++;
+    else if (code[endIdx] === ']') bracketCount--;
+  }
 
-  const insertContent = ',\n' + (isGs ? gsTemplate : srTemplate) + '\n'; 
-  const newCode = code.slice(0, insertPos) + insertContent + code.slice(insertPos); 
+  if (bracketCount !== 0) {
+    console.log(`括号不匹配，跳过：${filePath}`);
+    return null;
+  }
 
-  fs.writeFileSync(filePath, newCode, 'utf8'); 
-  patchedChars.push((isGs ? 'GS' : 'SR') + '：' + charName); 
-  console.log(`✔ 补充模板：${filePath}`); 
-  return true; 
-} 
+  const insertContent = ',\n' + (isGs ? gsTemplate : srTemplate) + '\n';
+  return code.slice(0, endIdx) + insertContent + code.slice(endIdx);
+}
 
-for (const dir of rootDirs) { 
-  const fullDirPath = path.resolve(dir); 
-  if (!fs.existsSync(fullDirPath)) continue; 
+function checkAndPatch(filePath, isGs, charName) {
+  let code = fs.readFileSync(filePath, 'utf8');
+  const patched = patchDetails(code, isGs, filePath);
+  if (!patched) return false;
 
-  const isGs = dir.includes('liangshi-gs'); 
+  fs.writeFileSync(filePath, patched, 'utf8');
+  patchedChars.push((isGs ? 'GS' : 'SR') + '：' + charName);
+  console.log(`✔ 补充模板：${filePath}`);
+  return true;
+}
 
-  const chars = fs.readdirSync(fullDirPath).filter(d => { 
-    return fs.statSync(path.join(fullDirPath, d)).isDirectory(); 
-  }); 
+for (const dir of rootDirs) {
+  const fullDirPath = path.resolve(dir);
+  if (!fs.existsSync(fullDirPath)) continue;
 
-  for (const charName of chars) { 
-    const jsFile = path.join(fullDirPath, charName, 'calc_basic.js'); 
-    if (fs.existsSync(jsFile)) { 
-      checkAndPatch(jsFile, isGs, charName); 
-    } 
-  } 
-} 
+  const isGs = dir.includes('liangshi-gs');
 
-fs.writeFileSync('.patched-characters.txt', 
-  patchedChars.length > 0 
-    ? '以下角色已添加特效模板：\n' + patchedChars.join('\n') 
-    : '所有角色已存在特效模板，无需补充。\n' 
+  const chars = fs.readdirSync(fullDirPath).filter(d =>
+    fs.statSync(path.join(fullDirPath, d)).isDirectory()
+  );
+
+  for (const charName of chars) {
+    const jsFile = path.join(fullDirPath, charName, 'calc_basic.js');
+    if (fs.existsSync(jsFile)) {
+      checkAndPatch(jsFile, isGs, charName);
+    }
+  }
+}
+
+fs.writeFileSync('.patched-characters.txt',
+  patchedChars.length > 0
+    ? '以下角色已添加特效模板：\n' + patchedChars.join('\n')
+    : '所有角色已存在特效模板，无需补充。\n'
 );
