@@ -61,4 +61,36 @@ export const details = [
   title: `${TalentName.qName}治疗量`,
   params: { EnergyDetermine: 0, BurstUse: 1, BurstHit: 1, BurstDmg: 1, HealNumber: 1, ChangeBondOfLife: 2 },
   dmg: ({ params, cons, talent, attr, calc, weapon }, { heal }) => heal(150 / 100 * (Math.min((params.blPct * (Math.min(145, (65 + (cons >= 2 ? 65 : 0))) * 2 + (weapon.name === '赤月之形' ? 25 : 0)) + params.blPlus), 200) / 100) * calc(attr.hp) + 150 / 100 * calc(attr.atk))
-}]
+},
+{  
+  title: '触发特效后生命值',  
+  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.hp) * 1) })  
+}, {  
+  title: '触发特效后攻击力',  
+  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.atk) * 1) })  
+}, {  
+  title: '触发特效后防御力',  
+  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.def) * 1) })  
+}, {  
+  title: '触发特效后暴击率',  
+  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cpct) * 1) })  
+}, {  
+  title: '触发特效后暴击伤害',  
+  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cdmg) * 1) })  
+}, {  
+  title: '触发特效后元素精通',  
+  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.mastery) * 1) })  
+}, {  
+  title: '触发特效后充能效率',  
+  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.recharge) * 1) })  
+}, {  
+  title: '触发特效后治疗加成',  
+  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.heal) * 1) })  
+}, {  
+  title: '触发特效后护盾强效',  
+  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.shield) * 1) })  
+}, {  
+  title: '当前圣遗物套装',  
+  dmg: ({ artis }) => ({ avg: artis, type: 'text' })  
+}
+]
