@@ -2,8 +2,8 @@ const fs = require('fs')
 const path = require('path')
 
 const rootDirs = [
-  'liangshi-gs',
-  'liangshi-sr'
+  'damage/liangshi-gs',
+  'damage/liangshi-sr'
 ]
 
 const gsTemplate = `{
