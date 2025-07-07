@@ -108,76 +108,38 @@ export const defDmgKey = `${ranking}`
 export const mainAttr = 'atk,cpct,cdmg,speed'
 export const defParams = { technique: `${Technique}` }
 
-export const buffs = [characterBuffSr,enemyBuffSr,
+export const buffs = [[
+characterBuffSr,enemyBuffSr,
   {
     check: ({ params }) => params.technique >= 1,
     title: '加拉赫秘技：[亲启佳酿] 进入战斗后对敌方全体造成火属性伤害。'
-  }, {
+  },
+{
     title: '加拉赫技能：[鏖战正酣] 【酩酊】使目标受到的击破伤害提高[_dmg]%',
     data: {
       _dmg: ({ talent }) => talent.t['击破伤害提高'] * 100
     }
-  }, {
+  },
+{
     title: '加拉赫技能：[****花奔涌] 受到强化普攻酒花奔涌攻击的目标攻击力降低[atkDef]%',
     data: {
       atkDef: ({ talent }) => talent.a2['攻击力降低'] * 100
     }
-  }, {
+  },
+{
     title: '加拉赫行迹：[崭新配方] 使自身提供的治疗量提高[heal]%',
     tree: 1,
     data: {
       heal: ({ calc, attr }) => Math.min(75, (calc(attr.stance) * 50) / 100)
     }
-  }, {
+  },
+{
     title: '加拉赫1魂：[盐与犬] 进入战斗后会恢复[_energyevery]点能量，效果抵抗提高[effDef]%',
     cons: 1,
     data: {
       effDef: 50,
       _energyevery: 20
     }
-  }, {
-    title: '加拉赫6魂：[****与沙] 击破特攻提高[stance]%',
-    cons: 6,
-    data: {
-      stance: 20
-    }
   }
-,
-{
-  title: '触发特效后生命值',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.hp) * 1) })
-}, {
-  title: '触发特效后攻击力',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.atk) * 1) })
-}, {
-  title: '触发特效后防御力',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.def) * 1) })
-}, {
-  title: '触发特效后速度',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.speed) * 1) })
-}, {
-  title: '触发特效后暴击率',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cpct) * 1) })
-}, {
-  title: '触发特效后暴击伤害',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cdmg) * 1) })
-}, {
-  title: '触发特效后击破特攻',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.stance) * 1) })
-}, {
-  title: '触发特效后效果命中',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effPct) * 1) })
-}, {
-  title: '触发特效后效果抵抗',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effDef) * 1) })
-}, {
-  title: '触发特效后充能效率',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.recharge) * 1) })
-}, {
-  title: '触发特效后治疗加成',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.heal) * 1) })
-}, {
-  title: '当前遗器套装',
-  dmg: ({ artis }) => ({ avg: artis, type: 'text' })
-}
+]
 ]

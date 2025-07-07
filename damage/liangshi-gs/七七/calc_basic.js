@@ -99,4 +99,4 @@ export const details = [
   title: '当前遗器套装',
   dmg: ({ artis }) => ({ avg: artis, type: 'text' })
 }
-]
+]]

@@ -101,7 +101,8 @@ export const defDmgKey = `${ranking}`
 export const mainAttr = 'atk,cpct,cdmg'
 export const defParams = { technique: `${Technique}` }
 
-export const buffs = [characterBuffSr,enemyBuffSr,
+export const buffs = [[
+characterBuffSr,enemyBuffSr,
 {
   check: ({ params }) => params.technique >= 1,
   title: '星期日秘技：[荣光之秘] 对我方目标施放技能时，使目标造成的伤害提高[dmg]%',
@@ -179,42 +180,6 @@ export const buffs = [characterBuffSr,enemyBuffSr,
     cdmg: ({ calc, attr }) => Math.max(0,(calc(attr.cpct) - 100)) * 2
  }
 },
- { title: `12.20最后修改：[12.20重置] 显示模式:${NamePath} 排行设置:${rankingOnePath},${rankingTwoPath},${rankingThreePath} 专属排行设置:${sr1313ranking} 更新日志:${renew} 其他信息:${information}` },
-{
-  title: '触发特效后生命值',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.hp) * 1) })
-}, {
-  title: '触发特效后攻击力',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.atk) * 1) })
-}, {
-  title: '触发特效后防御力',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.def) * 1) })
-}, {
-  title: '触发特效后速度',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.speed) * 1) })
-}, {
-  title: '触发特效后暴击率',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cpct) * 1) })
-}, {
-  title: '触发特效后暴击伤害',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.cdmg) * 1) })
-}, {
-  title: '触发特效后击破特攻',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.stance) * 1) })
-}, {
-  title: '触发特效后效果命中',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effPct) * 1) })
-}, {
-  title: '触发特效后效果抵抗',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.effDef) * 1) })
-}, {
-  title: '触发特效后充能效率',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.recharge) * 1) })
-}, {
-  title: '触发特效后治疗加成',
-  dmg: ({ attr, calc }) => ({ avg: Math.min(calc(attr.heal) * 1) })
-}, {
-  title: '当前遗器套装',
-  dmg: ({ artis }) => ({ avg: artis, type: 'text' })
-}
+{ title: `12.20最后修改：[12.20重置] 显示模式:${NamePath} 排行设置:${rankingOnePath},${rankingTwoPath},${rankingThreePath} 专属排行设置:${sr1313ranking} 更新日志:${renew} 其他信息:${information}` }
+]
 ]

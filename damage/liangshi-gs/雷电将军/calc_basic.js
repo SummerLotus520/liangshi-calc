@@ -124,3 +124,4 @@ export const details = [
   dmg: ({ artis }) => ({ avg: artis, type: 'text' })
 }
 ]
+]
