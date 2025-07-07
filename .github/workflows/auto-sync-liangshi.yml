@@ -41,7 +41,7 @@ jobs:
 
       - name: Patch calc.js with effect templates
         run: |
-          node .github/scripts/addEffectTemplates.js
+          node .github/scripts/addEffectTemplates.cjs
 
       - name: Commit changes if needed
         run: |
