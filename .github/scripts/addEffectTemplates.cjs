@@ -2,8 +2,8 @@ const fs = require('fs')
 const path = require('path')
 
 const rootDirs = [
-  'damage/meta-gs',
-  'damage/meta-sr'
+  'liangshi-gs',
+  'liangshi-sr'
 ]
 
 const gsTemplate = `{
@@ -78,37 +78,45 @@ const srTemplate = `{
 
 let patchedChars = []
 
-const checkAndPatch = (filePath, isGs, charName) => {
+function checkAndPatch(filePath, isGs, charName) {
   let code = fs.readFileSync(filePath, 'utf8')
+
+  // 判断是否已经有模板
   if (code.includes('触发特效后生命值')) {
     return false
   }
 
-  const insertAt = code.lastIndexOf('}]')
-  if (insertAt === -1) return false
+  // 找到 details 数组结束的 ]，插入模板
+  const insertPos = code.lastIndexOf(']')
+  if (insertPos === -1) return false
 
+  // 插入逗号+模板内容
   const insertContent = ',\n' + (isGs ? gsTemplate : srTemplate) + '\n'
-  const newCode = code.slice(0, insertAt) + insertContent + code.slice(insertAt)
+  const newCode = code.slice(0, insertPos) + insertContent + code.slice(insertPos)
 
   fs.writeFileSync(filePath, newCode, 'utf8')
-  patchedChars.push(`${isGs ? 'GS' : 'SR'}：${charName}`)
-  console.log(`✔ 补充：${filePath}`)
+  patchedChars.push((isGs ? 'GS' : 'SR') + '：' + charName)
+  console.log(`✔ 补充模板：${filePath}`)
   return true
 }
 
 for (const dir of rootDirs) {
-  const fullPath = path.resolve(dir)
-  if (!fs.existsSync(fullPath)) continue
+  const fullDirPath = path.resolve(dir)
+  if (!fs.existsSync(fullDirPath)) continue
 
-  fs.readdirSync(fullPath).forEach(char => {
-    const jsPath = path.join(fullPath, char, 'calc.js')
-    if (fs.existsSync(jsPath)) {
-      checkAndPatch(jsPath, dir.includes('meta-gs'), char)
-    }
+  const chars = fs.readdirSync(fullDirPath).filter(d => {
+    return fs.statSync(path.join(fullDirPath, d)).isDirectory()
   })
+
+  for (const charName of chars) {
+    const jsFile = path.join(fullDirPath, charName, 'calc_basic.js')
+    if (fs.existsSync(jsFile)) {
+      checkAndPatch(jsFile, dir === 'liangshi-gs', charName)
+    }
+  }
 }
 
-// 输出结果供通知使用
+// 输出补丁结果文件，供 GitHub Actions 使用
 fs.writeFileSync('.patched-characters.txt',
   patchedChars.length > 0
     ? '以下角色已添加特效模板：\n' + patchedChars.join('\n')
