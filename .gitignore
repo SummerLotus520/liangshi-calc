@@ -1,3 +1,4 @@
 config/*
 !config/system
 damage/liangshi-gs/艾梅莉埃/TeamData.json
+.patched-characters.txt
