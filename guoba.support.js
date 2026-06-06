@@ -20,22 +20,7 @@ export function supportGuoba () {
       schemas: [
         {
           component: 'Divider',
-          label: '计算/评分基础设置'
-        },
-        {
-          field: 'calcLiang',
-          label: 'liangshicalc 基础',
-          component: 'Switch'
-        },
-        {
-          field: 'calcLiangQ',
-          label: 'liangshicalc 超全',
-          component: 'Switch'
-        },
-        {
-          field: 'calcLi',
-          label: 'liangshicalc 大爷',
-          component: 'Switch'
+          label: '评分基础设置'
         },
         {
           field: 'artisLiang',
@@ -103,11 +88,11 @@ export function supportGuoba () {
               { label: '使用 ( 原神：元素爆发伤害 ，星穹铁道：终结技伤害 ）', value: 'q' },
               { label: '使用角色的辅助队友能力', value: 'f' },
               { label: '使用角色的治疗量/护盾吸收量/伤害消解量', value: 'h' },
-              { label: '使用角色的养成度（仅限使用极简版伤害计算）', value: 'y' },
-              { label: '使用角色的单轮总伤害量（仅限使用超全版伤害计算）', value: 'dph' },
-              { label: '使用角色的单轮总治疗量（仅限使用超全版伤害计算）', value: 'hph' },
-              { label: '使用角色的平均每秒伤害值（仅限使用超全版伤害计算）', value: 'dps' },
-              { label: '使用角色的平均每秒治疗量（仅限使用超全版伤害计算）', value: 'hps' }
+              { label: '使用角色的养成度', value: 'y' },
+              { label: '使用角色的单轮总伤害量', value: 'dph' },
+              { label: '使用角色的单轮总治疗量', value: 'hph' },
+              { label: '使用角色的平均每秒伤害值', value: 'dps' },
+              { label: '使用角色的平均每秒治疗量', value: 'hps' }
             ]
           }
         },
@@ -126,11 +111,11 @@ export function supportGuoba () {
               { label: '使用 ( 原神：元素爆发伤害 ，星穹铁道：终结技伤害 ）', value: 'q' },
               { label: '使用角色的辅助队友能力', value: 'f' },
               { label: '使用角色的治疗量/护盾吸收量/伤害消解量', value: 'h' },
-              { label: '使用角色的养成度（仅限使用极简版伤害计算）', value: 'y' },
-              { label: '使用角色的单轮总伤害量（仅限使用超全版伤害计算）', value: 'dph' },
-              { label: '使用角色的单轮总治疗量（仅限使用超全版伤害计算）', value: 'hph' },
-              { label: '使用角色的平均每秒伤害值（仅限使用超全版伤害计算）', value: 'dps' },
-              { label: '使用角色的平均每秒治疗量（仅限使用超全版伤害计算）', value: 'hps' }
+              { label: '使用角色的养成度', value: 'y' },
+              { label: '使用角色的单轮总伤害量', value: 'dph' },
+              { label: '使用角色的单轮总治疗量', value: 'hph' },
+              { label: '使用角色的平均每秒伤害值', value: 'dps' },
+              { label: '使用角色的平均每秒治疗量', value: 'hps' }
             ]
           }
         },
@@ -149,11 +134,11 @@ export function supportGuoba () {
               { label: '使用 ( 原神：元素爆发伤害 ，星穹铁道：终结技伤害 ）', value: 'q' },
               { label: '使用角色的辅助队友能力', value: 'f' },
               { label: '使用角色的治疗量/护盾吸收量/伤害消解量', value: 'h' },
-              { label: '使用角色的养成度（仅限使用极简版伤害计算）', value: 'y' },
-              { label: '使用角色的单轮总伤害量（仅限使用超全版伤害计算）', value: 'dph' },
-              { label: '使用角色的单轮总治疗量（仅限使用超全版伤害计算）', value: 'hph' },
-              { label: '使用角色的平均每秒伤害值（仅限使用超全版伤害计算）', value: 'dps' },
-              { label: '使用角色的平均每秒治疗量（仅限使用超全版伤害计算）', value: 'hps' }
+              { label: '使用角色的养成度', value: 'y' },
+              { label: '使用角色的单轮总伤害量', value: 'dph' },
+              { label: '使用角色的单轮总治疗量', value: 'hph' },
+              { label: '使用角色的平均每秒伤害值', value: 'dps' },
+              { label: '使用角色的平均每秒治疗量', value: 'hps' }
             ]
           }
         },

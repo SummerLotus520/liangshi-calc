@@ -1,18 +1,34 @@
 import { LSconfig } from '#liangshi'
 import { DefaultRankingData } from './DefaultRanking.js'
-import { UserRankingData } from '../../config/ranking.js'
 import { BasicMiss } from './BasicMissKey.js'
-import path from 'node:path'
 import fs from 'node:fs'
+
+function getUserRankingData () {
+  try {
+    const file = 'plugins/liangshi-calc/config/ranking.js'
+    if (!fs.existsSync(file)) return {}
+    return fs.readFileSync(file, 'utf8')
+      .replace(/^\s*\/\/.*$/gm, '')
+      .match(/UserRankingData\s*=\s*(\{[\s\S]*\})/)?.[1] || '{}'
+  } catch {
+    return {}
+  }
+}
 
 function RankingKey(CharacterName) {
   let cfg = LSconfig.getConfig('user', 'config')
-  let miss = BasicMiss[CharacterName]
-  let rankingOnePath = cfg.rankingOnemodel
-  let rankingTwoPath = cfg.rankingTwomodel
-  let rankingThreePath = cfg.rankingThreemodel
+  let miss = BasicMiss[CharacterName] || []
+  let userRanking = {}
+  try {
+    userRanking = Function(`return (${getUserRankingData()})`)()
+  } catch {
+    userRanking = {}
+  }
+  let rankingOnePath = cfg.rankingOnemodel || 'm'
+  let rankingTwoPath = cfg.rankingTwomodel || 'hps'
+  let rankingThreePath = cfg.rankingThreemodel || 'dps'
   let ranking = 'undefined'
-  if (!UserRankingData[CharacterName]) {
+  if (!userRanking[CharacterName]) {
     if (rankingOnePath == 'm') {
       ranking = DefaultRankingData[CharacterName]
     } else if (miss.includes(rankingOnePath)) {
@@ -34,7 +50,7 @@ function RankingKey(CharacterName) {
       ranking = `${rankingOnePath}`
     }
   } else {
-    ranking = UserRankingData[CharacterName]
+    ranking = userRanking[CharacterName]
   }
   return ranking
 }

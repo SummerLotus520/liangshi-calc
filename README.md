@@ -35,9 +35,6 @@ git clone --depth=1 https://github.com/liangshi233/liangshi-calc.git ./plugins/l
 
 ###### 计算/评分基础设置
 ~~~~~~~~~~YAML
-calcLiang: true #liangshicalc 基础
-calcLiangQ: false #liangshicalc 超全
-calcLi: false #liangshicalc 大爷
 artisLiang: false #liangshicalc普通评分
 artisLiangZ: false #liangshicalc自适应评分
 ~~~~~~~~~~
@@ -53,58 +50,17 @@ panelmodel: 1 #自动刷新预设面板的版本，默认使用liangshi，需要
 
 ### 功能
 ~~~~~~~~~~
-现有的角色更多类型的伤害计算条目
+梁氏Max：合并基础、超全、前瞻、队伍、智能组队等来源后的唯一伤害计算规则
 现有的角色提供预设面板以供查看
-支持深度对计算条目场景进行自定义
 支持自定义排行目标条目
 支持自定义条目显示名称
-支持安装他人伤害计算与评分
+支持梁氏评分与自适应评分
 ~~~~~~~~~~
-！希诺宁及往后计算未经实机检验正确性，有问题请在issues中提出
-！通用计算，面板数据组队计算需要更新至最新版miao-plugin才可正常使用
+！梁氏Max来源包括本地梁氏旧规则、上游 master/team、lolomi-calc、Miao-Panel 共创服计算、Miao-Panel fork 以及 miao-plugin 原始计算
+！Miao-Panel 共创服角色按角色名合并，不按 id 合并；银狼、银狼Pro、银狼LV.999 保持为三套独立规则
+！通用计算和面板数据仍需要安装 miao-plugin 才可正常使用
 
 默认支持内容查询 [点击](damage/liangshi-gs/README.md)🤔
-
-<details><summary>安装他人的计算-仅供参考</summary>
-
-> 参考用的仓库被封了，示例仅供展示
-
-###### 步骤1
-
-使用链接安装示例 - 仅供参考，具体步骤请按对应计算说明中写明方法
-~~~~~~~~~~
-#更新 + '主页链接' + '游戏名字' + '仓库名字' + 伤害计算
-
-#更新https://gitee.com/liangshi233星铁liangshi伤害计算
-~~~~~~~~~~
-
-使用名字安装/更新示例 - 仅供参考，具体步骤请按对应计算说明中写明方法
-~~~~~~~~~~
-#更新 + '仓库名字' + '游戏名字' + 伤害计算
-
-#更新liangshi星铁伤害计算
-~~~~~~~~~~
-
-手动安装示例 - 仅供参考，具体步骤请按对应计算说明中写明方法
-
-~~~~~~~~~~
-git clone --depth=1 https://gitee.com/liangshi233/liangshi-sr.git ./plugins/liangshi-calc/damage/liangshi-sr/
-~~~~~~~~~~
-
-###### 步骤2
-
-在设置中手动添加-仅供参考，具体步骤请按对应计算说明中的方法
-~~~~~~~~~~YAML
-calcmodel: liangshi #你安装计算的名字（例如abc-gs，就填abc）
-~~~~~~~~~~
-
-###### 步骤3
-
-重启Bot
-
-> 由于个人时间精力有限，后续自带的计算基本不再会更新新角色，建议安装其他仓库的计算避免后续角色无计算
-
-</details>
 
 ---
 

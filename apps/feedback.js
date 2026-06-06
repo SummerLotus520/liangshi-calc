@@ -1,8 +1,6 @@
 import fs from 'node:fs'
-import { LSconfig } from '#liangshi'
 
 const _path = process.cwd()
-const cfg = LSconfig.getConfig('user', 'config')
 const configPath = `${_path}/plugins/liangshi-calc/config/config.yaml`
 
 export class feedback extends plugin {
@@ -47,19 +45,7 @@ export class feedback extends plugin {
   }
 
   async sc2 () {
-    if (!cfg.calcLiang && !cfg.artisLiang) {
-      this.e.reply('检测到设置可能异常，尝试删除设置以重新应用默认设置')
-      try {
-        fs.unlinkSync(configPath)
-        this.e.reply('删除成功，重启Bot后设置将会自动重置')
-        return true
-      } catch {
-        this.e.reply('删除异常，请重试或手动删除')
-        return true
-      }
-    } else {
-      this.e.reply('您已经启动过了，请勿重复启动')
-      return true
-    }
+    this.e.reply('梁氏Max已默认启用，无需再切换计算规则')
+    return true
   }
 }

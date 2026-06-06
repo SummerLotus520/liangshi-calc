@@ -41,7 +41,6 @@ export class allSetting extends plugin {
 
   /*
   async liangshiStart() {
-    this.cfg.calcLiang = true //todo 写入配置文件
     LSstart.start(true)
     await this.e.reply('欢迎使用梁氏', true)
     return true

@@ -1,8 +1,6 @@
 #详细内容请查看说明
+# 梁氏Max 是唯一伤害计算规则，默认启用且无需开关
 
-calcLiang: true
-calcLiangQ: false
-calcLi: false
 artisLiang: false
 artisLiangZ: false
 

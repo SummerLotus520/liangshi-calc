@@ -8,45 +8,6 @@
 ## 主要设置
 
 ### 设置1
-是否启用`liangshicalc 基础`计算
-~~~~~~~~~~YAML
-calcLiang: true
-~~~~~~~~~~
-<details><summary>可用的内容 false true</summary>
-
-`true` 启用
-
-`false` 禁用
-
-</details>
-
-### 设置2
-是否启用`liangshicalc 超全`计算
-~~~~~~~~~~YAML
-calcLiangQ: false
-~~~~~~~~~~
-<details><summary>可用的内容 false true</summary>
-
-`true` 启用
-
-`false` 禁用
-
-</details>
-
-### 设置3
-是否启用`liangshicalc 大爷`计算
-~~~~~~~~~~YAML
-calcLi: false
-~~~~~~~~~~
-<details><summary>可用的内容 false true</summary>
-
-`true` 启用
-
-`false` 禁用
-
-</details>
-
-### 设置4
 是否启用来自`liangshicalc`的基础评分规则
 ~~~~~~~~~~YAML
 artisLiang: false
@@ -59,7 +20,7 @@ artisLiang: false
 
 </details>
 
-### 设置5
+### 设置2
 是否启用来自`liangshicalc`的自适应评分规则
 ~~~~~~~~~~YAML
 artisLiangZ: false
@@ -71,16 +32,6 @@ artisLiangZ: false
 `false` 禁用
 
 </details>
-
----
-
-
-### 设置6(不生成)
-你使用的其他计算名称或仓库名称
-~~~~~~~~~~YAML
-calcmodel: liangshi
-~~~~~~~~~~
-不使用其他计算请勿修改此项
 
 ---
 
@@ -345,9 +296,6 @@ bndOfLifePct: 1
 >出现异常时可复制下方配置尝试恢复
 
 ~~~~~~~~~~YAML
-calcLiang: true
-calcLiangQ: false
-calcLi: false
 artisLiang: false
 artisLiangZ: false
 
